@@ -1,6 +1,6 @@
-use std::io;
 use rand::Rng;
 use std::cmp::Ordering;
+use std::io;
 use std::time::Instant;
 
 fn main() {
@@ -11,7 +11,7 @@ fn main() {
     let mut guesses: u32 = 0;
 
     let start = Instant::now();
-    
+
     loop {
         println!("Please input your guess.");
 
@@ -25,25 +25,24 @@ fn main() {
             Ok(num) => num,
             Err(_) => continue,
         };
-        
+
         println!("You guessed: {guess}");
 
         match guess.cmp(&secret_number) {
             Ordering::Less => {
                 guesses += 1;
                 println!("Too small!");
-            },
+            }
             Ordering::Greater => {
                 guesses += 1;
                 println!("Too big!");
-            },
+            }
             Ordering::Equal => {
                 guesses += 1;
                 let duration = start.elapsed();
                 println!("You win! You used {guesses} guesses in {:?}.", duration);
                 break;
             }
-        }    
+        }
     }
-    
 }
